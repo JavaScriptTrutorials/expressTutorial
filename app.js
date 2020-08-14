@@ -30,43 +30,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-app.get('/add-blog', (req, res) => {
-    const blog = new Blog({
-        title: 'New blog',
-        snippet: 'About my new blog',
-        body: 'Lorem ipsum'
-    });
-
-    blog.save()
-    .then((result) => {
-        res.send(result);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
-
-app.get('/all-blogs', (req, res) => {
-    Blog.find()
-    .then(response => {
-        res.send(response);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-});
-
-app.get('/single-blog', (req, res) => {
-    Blog.findById('5f36965eef5daf58bed7fb48')
-    .then( (result) => {
-        res.send(result);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-});
-
 // redirects
 app.get('/', (req, res) => {
     res.redirect('/blogs');
@@ -89,12 +52,30 @@ app.post('/blogs', (req, res) => {
     .catch( (err) => console.log(err));
 });
 
-app.get('/about', (req, res) => {
-    res.render('about', {title: 'About'});
-});
-
 app.get('/blogs/create', (req, res) => {
     res.render('create',{ title: 'Create a new blog'});
+});
+
+app.get('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findById(id)
+    .then((result) => {
+        res.render('details', {blog: result, title: 'Blog details'});
+    })
+    .catch( (err) => console.log(err));
+});
+
+app.delete('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+    .then(result => {
+        res.json({redirect: '/blogs'});
+    })
+    .catch(err => console.log(err));
+});
+
+app.get('/about', (req, res) => {
+    res.render('about', {title: 'About'});
 });
 
 app.use((req, res) => {
