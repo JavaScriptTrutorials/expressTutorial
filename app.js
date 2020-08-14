@@ -10,7 +10,12 @@ app.listen(3000, () => {
 });
 
 app.get('/', (req, res) => {
-    res.render('index',{ title: 'Home'});
+    const blogs = [
+        {title: 'title 1', snippet: 'Lorem ipsum dolor, sit amet consectuter.'},
+        {title: 'title 2', snippet: 'Lorem ipsum dolor, sit amet consectuter.'},
+        {title: 'title 3', snippet: 'Lorem ipsum dolor, sit amet consectuter.'}
+    ];
+    res.render('index',{ title: 'Home', blogs});
 });
 
 app.get('/about', (req, res) => {
