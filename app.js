@@ -1,13 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Blog = require('./models/blog')
+const bodyParser = require('body-parser');
+const Blog = require('./models/blog');
 const app = express();
+
 
 // connect to mongoDB
 const dbURI = 'mongodb+srv://netninja:test1234@nodecluster.mjkee.mongodb.net/node-tuts?retryWrites=true&w=majority';
 // mongoose.connect(dbURI);
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(result => app.listen(3000))
+.then(result => app.listen(3000, () => console.log('Server listening on port 3000!')))
 .catch(err => console.log(err));
 
 // register view engine
@@ -15,6 +17,8 @@ app.set('view engine', 'ejs');
 //app.set('views', 'myviews');
 
 // middleware & static files
+app.use(bodyParser.urlencoded({extended:false}));
+
 app.use('/public' ,express.static('public'));
 
 app.use((req, res, next) => {
@@ -63,13 +67,9 @@ app.get('/single-blog', (req, res) => {
     });
 });
 
+// redirects
 app.get('/', (req, res) => {
-    const blogs = [
-        {title: 'title 1', snippet: 'Lorem ipsum dolor, sit amet consectuter.'},
-        {title: 'title 2', snippet: 'Lorem ipsum dolor, sit amet consectuter.'},
-        {title: 'title 3', snippet: 'Lorem ipsum dolor, sit amet consectuter.'}
-    ];
-    res.render('index',{ title: 'Home', blogs});
+    res.redirect('/blogs');
 });
 
 app.get('/blogs', (req, res) => {
@@ -80,17 +80,21 @@ app.get('/blogs', (req, res) => {
     .catch( err => console.log(err));
 });
 
+app.post('/blogs', (req, res) => {
+    const blog = new Blog(req.body);
+    blog.save()
+    .then((result) => {
+        res.redirect('/blogs');
+    })
+    .catch( (err) => console.log(err));
+});
+
 app.get('/about', (req, res) => {
     res.render('about', {title: 'About'});
 });
 
 app.get('/blogs/create', (req, res) => {
     res.render('create',{ title: 'Create a new blog'});
-});
-
-// redirects
-app.get('/about-us', (req, res) => {
-    res.redirect('/about');
 });
 
 app.use((req, res) => {
