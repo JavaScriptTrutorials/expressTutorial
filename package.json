@@ -1,0 +1,28 @@
+{
+  "name": "expresstutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavaScriptTrutorials/expressTutorial.git"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "mongoose",
+    "basic"
+  ],
+  "author": "Marian Nociar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JavaScriptTrutorials/expressTutorial/issues"
+  },
+  "homepage": "https://github.com/JavaScriptTrutorials/expressTutorial#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
