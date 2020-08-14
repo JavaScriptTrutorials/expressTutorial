@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+</head>
+
+<body>
+  <h1>Hello on my website</h1>
+  <nav>
+    <div class="site-title">
+      <a href="/">
+        <h1>Blog</h1>
+      </a>
+      <p>My site</p>
+    </div>
+    <ul>
+      <li><a href="/">Blogs</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/blogs/create">New Blog</a></li>
+    </ul>
+  </nav>
+  <div class="create-blog content">
+    <form>
+        <label for="title">Blog title:</label>
+        <input type="text" id="title" required></input>
+        <label for="snippet">Blog snippet:</label>
+        <input type="text" id="snippet" required></input>
+        <label for="body">Blog body:</label>
+        <textarea id="body" required></textarea>
+        <button>Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>
