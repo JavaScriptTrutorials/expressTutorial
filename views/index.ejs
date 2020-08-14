@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title><%= title %></title>
-</head>
+  <%- include('./partials/head') %> 
 
 <body>
   <h1>Hello on my website</h1>
-  <nav>
-    <div class="site-title">
-      <a href="/">
-        <h1>Blog</h1>
-      </a>
-      <p>My site</p>
-    </div>
-    <ul>
-      <li><a href="/">Blogs</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/blogs/create">New Blog</a></li>
-    </ul>
-  </nav>
+  
+  <%- include('./partials/nav') %> 
+
   <div class="blogs content">
     <h2>All blogs</h2>
 
@@ -33,6 +21,7 @@
     <% } %> 
 
   </div>
+  <%- include('./partials/footer') %> 
 </body>
 
 </html>
