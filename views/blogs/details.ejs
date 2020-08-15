@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-  <%- include('./partials/head') %> 
+  <%- include('../partials/head') %> 
 
 <body>
   <h1>Hello on my website</h1>
   
-  <%- include('./partials/nav') %> 
+  <%- include('../partials/nav') %> 
 
   <div class="details content">
     <h2><%= blog.title %> </h2>
@@ -15,7 +15,7 @@
     </div>
     <a class="delete" data-doc="<%= blog._id %> ">delete</a>
   </div>
-  <%- include('./partials/footer') %> 
+  <%- include('../partials/footer') %> 
   <script>
       const trashcan = document.querySelector('a.delete');
 
